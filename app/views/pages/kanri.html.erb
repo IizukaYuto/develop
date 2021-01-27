@@ -1,0 +1,39 @@
+<div class="top-wrapper text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to 'シフト作成', '#', class: 'btn btn-block btn-blue' %>
+          </div>
+          <div class="col-md-6">
+            <%= link_to '従業員管理', '#',class: 'btn btn-block btn-blue' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to '出勤', start_time_path,class: 'btn btn-block btn-blue' %>
+          </div>
+          <div class="col-md-6">
+            <%= link_to '退勤', end_time_path,class: 'btn btn-block btn-blue' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--店長のみ勤怠を修正-->
+    <% if current_user.task == "1" %>
+    <div class="row">
+      <div class= "col-md-6 mx-auto">
+        <%= link_to '勤怠修正','#', class: 'btn btn-block btn-blue'%>  
+      </div>
+    </div>
+    <% end %>
+    
+  </div>  
+</div>

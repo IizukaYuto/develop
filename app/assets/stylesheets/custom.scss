@@ -1,0 +1,20 @@
+.btn-blue {
+  color: blue;
+  border: 1px solid #fff;
+  border-color: green;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 20px;
+  background-color: rgba(0,0,0,0.0);
+  margin-top: 20px;
+  &:hover {
+    color: red;
+  }
+}
+
+.top-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #EEEEEE;
+}
+
