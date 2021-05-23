@@ -1,0 +1,9 @@
+<div class="top-wrapper text-center">
+  <div class="container">
+    <h1>勤怠一覧</h1>
+    <p>ユーザー検索</p>
+    <%= form_tag (schedules_admin_index_path, method: "get") do %>
+       <%= text_field_tag :search %>
+       <%= submit_tag 'Search'%>
+    <% end %>
+</div>

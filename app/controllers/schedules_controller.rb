@@ -1,4 +1,10 @@
 class SchedulesController < ApplicationController
+  before_action :authenticate_user!
+  def my_index
+      @schedules = Schedule.where(user_id: current_user.id)
+      @schedule_name = current_user.name
+  end
+  
   def start_time
       
       schedule = Schedule.new
@@ -13,26 +19,34 @@ class SchedulesController < ApplicationController
   end
 
   def end_time
-      #最新のレコード取得
-      schedule = Schedule.last
-      check = true
-      #前回データがあるか
-      if  Schedule.exists?(schedule.id - 1)
-          check_schedule = Schedule.find(schedule.id - 1)
-          if check_schedule.end_time.nil?
-             check = false
-          end
-      end
       
-      if  schedule.end_time.nil? && check == true
-          schedule.end_time = Time.now  
-          schedule.save
-          redirect_to root_path, success:"お疲れ様でした"
-      else
-          redirect_to root_path, danger:"前回分入力漏れ"
-          #今回分保存
-          schedule.end_time = Time.now
-          schedule.save
+      #保存された日時を降順
+      @schedule = Schedule.where('user_id = ?', current_user.id).order("created_at DESC").first
+      
+         @before_schedule = Schedule.where('user_id = ?', current_user.id).order("created_at DESC").second
+         
+                
+      if    @before_schedule && !@before_schedule.end_time
+            flash.now[:danger] = '前回分退勤入力漏れ'
+            #今回分保存
+            @schedule.end_time = Time.now
+            @schedule.save
+      elsif @before_schedule.nil?
+            flash.now[:danger] = '出勤記録があリません'
       end
+        #start_time有、end_time無
+      if    @schedule && !@schedule.end_time
+            @schedule.end_time = Time.now
+            @schedule.save
+            flash[:success] ="お疲れ様でした"
+        #start_time有、end_time有
+      elsif @schedule.nil?
+            flash[:danger] = "勤怠を確認してください"
+      elsif @schedule && @schedule.end_time
+            flash[:danger] = "勤怠を確認してください"
+      end
+      redirect_to root_path
+
   end
+  
 end

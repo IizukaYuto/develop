@@ -6,13 +6,17 @@ class ApplicationController < ActionController::Base
   require "time"
   
   def after_sign_in_path_for(resource)
-      pages_kanri_path
+    if user_signed_in?
+        pages_user_page_path 
+    else 
+        pages_kanri_path 
+    end
   end
   
-  private
-    def sign_in_required
-        redirect_to new_user_session_url unless user_signed_in?
-    end
+  # private
+  #   def sign_in_required
+  #       # redirect_to new_user_session_url unless user_signed_in?
+  #   end
     
   protected
 

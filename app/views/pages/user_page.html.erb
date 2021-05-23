@@ -4,24 +4,27 @@
       <div class="col-md-6 mx-auto">
         <div class="row">
           <div class="col-md-6">
-            <%= link_to '勤怠一覧', schedules_admin_index_path, class: 'btn btn-block btn-blue' %>
+            <%= link_to '出勤', '/schedules/start_time',class: 'btn btn-block btn-blue' %>
           </div>
           <div class="col-md-6">
-            <%= link_to '勤怠修正', '#',class: 'btn btn-block btn-blue' %>
+            <%= link_to '退勤', '/schedules/end_time',class: 'btn btn-block btn-blue' %>
           </div>
         </div>
       </div>
     </div>
     
+    
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="row">
           <div class="col-md-6">
-            <%= link_to '従業員管理','#',class: 'btn btn-block btn-blue' %>
+            <%= link_to '勤怠一覧', schedules_my_index_path , class: 'btn btn-block btn-blue' %>
           </div>
           <div class="col-md-6">
-            <%= link_to '給与明細作成', '#',class: 'btn btn-block btn-blue' %>
+            <%= link_to '給与明細発行', '#',class: 'btn btn-block btn-blue' %>
           </div>
         </div>
       </div>
     </div>
+  </div>  
+</div>

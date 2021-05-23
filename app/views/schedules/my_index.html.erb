@@ -1,0 +1,13 @@
+<div class="top-wrapper text-center">
+  <div class="container">
+    <h1>勤怠一覧</h1>
+    <% @schedules.each do |schedule|%>
+      <p>--------------------------------</p>
+        <p><%= @schedule_name%></p>
+        <p><%= schedule.start_time %></p>
+        <p><%= schedule.end_time %></p>
+      <p>--------------------------------</p>
+      
+    <% end %>  </div>
+  
+</div>
